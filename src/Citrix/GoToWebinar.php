@@ -238,7 +238,7 @@ class GoToWebinar extends ServiceAbstract implements CitrixApiAware
    * @param array $coorganizerKey
    * @return \Citrix\Entity\Consumer
    */
-  public function addCoorganizer($webinarKey, $coorganizerData){
+  public function deleteCoorganizer($webinarKey, $coorganizerData){
 
     $url = 'https://api.getgo.com/G2W/rest/v2/organizers/' . $this->getClient()->getOrganizerKey() . '/webinars/' . $webinarKey . '/coorganizers/' . $coorganizerKey;
     $this->setHttpMethod('DELETE')
