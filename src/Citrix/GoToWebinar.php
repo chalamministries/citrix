@@ -232,6 +232,24 @@ class GoToWebinar extends ServiceAbstract implements CitrixApiAware
   }
   
   /**
+   * Remove a Co-Orgainzer
+   *
+   * @param int $webinarKey
+   * @param array $coorganizerKey
+   * @return \Citrix\Entity\Consumer
+   */
+  public function addCoorganizer($webinarKey, $coorganizerData){
+
+    $url = 'https://api.getgo.com/G2W/rest/v2/organizers/' . $this->getClient()->getOrganizerKey() . '/webinars/' . $webinarKey . '/coorganizers/' . $coorganizerKey;
+    $this->setHttpMethod('DELETE')
+        ->setUrl($url)
+        ->sendRequest($this->getClient()->getAccessToken())
+        ->processResponse(true);
+
+    return $this->getResponse();
+  }
+  
+  /**
    * Register a Panelist
    *
    * @param int $webinarKey
@@ -244,6 +262,24 @@ class GoToWebinar extends ServiceAbstract implements CitrixApiAware
     $this->setHttpMethod('POST')
         ->setUrl($url)
         ->setParams($panelistData)
+        ->sendRequest($this->getClient()->getAccessToken())
+        ->processResponse(true);
+
+    return $this->getResponse();
+  }
+  
+  /**
+   * Remove a Panelist
+   *
+   * @param int $webinarKey
+   * @param int $panelistKey
+   * @return \Citrix\Entity\Consumer
+   */
+  public function deletePanelist($webinarKey, $panelistKey){
+
+    $url = 'https://api.getgo.com/G2W/rest/v2/organizers/' . $this->getClient()->getOrganizerKey() . '/webinars/' . $webinarKey . '/panelists/' . $panelistKey;
+    $this->setHttpMethod('DELETE')
+        ->setUrl($url)
         ->sendRequest($this->getClient()->getAccessToken())
         ->processResponse(true);
 
